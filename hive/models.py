@@ -3,14 +3,47 @@ from django.db import models
 from django.db.models.fields.files import ImageField
 
 # Create your models here.
+
+class Location(models.Model):
+    """A Model class for image location"""
+
+    name = models.CharField(max_length= 50)
+
+    def __str__(self):
+        return self.name
+
+    def save_location(self):
+        """Method for saving image location"""
+        self.save()
+
+    def delete_location(self):
+        """Method for deleting image location"""
+        self.delete()
+
+class Category(models.Model):
+    """A model class for image category"""
+    
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    def save_category(self):
+        """Method to save image catgory"""
+        self.save()
+
+    def delete_category(self):
+        """Method to delete image category"""
+        self.delete()
+
 class Image(models.Model):
     """A model class for image properties"""
     
     image = ImageField('image')
     name = models.CharField(max_length=50)
     description = models.TextField()
-    location= models.ForeignKey(Location, on_delete=models.CASCADE, default=None)
-    category = models.ManyToManyField(C)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, default=None)
+    category = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.name
@@ -48,38 +81,9 @@ class Image(models.Model):
         return images
 
 
-class Location(models.Model):
-    """A Model class for image location"""
-
-    name = models.CharField(max_length= 50)
-
-    def __str__(self):
-        return self.name
-
-    def save_location(self):
-        """Method for saving image location"""
-        self.save()
-
-    def delete_location(self):
-        """Method for deleting image location"""
-        self.delete()
 
 
-class Category(models.Model):
-    """A model class for image category"""
-    
-    name = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.name
-
-    def save_category(self):
-        """Method to save image catgory"""
-        self.save()
-
-    def delete_category(self):
-        """Method to delete image category"""
-        self.delete()
 
 
     
