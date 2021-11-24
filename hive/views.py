@@ -36,4 +36,12 @@ def  view_category(request, category):
     categories = Image.objects.distinct().values_list('category_name', flat=True)
     image = Image.objects.filter(category_name = category)
     return render(request, 'category.html', {"image":image, 'categories': categories})
+
+def view_location(request, location):
+    """Function for filtering Images according to their Locations"""
+
+    locations = Image.objects.distinct().values_list('locations_name', flat= True)
+    categories = Image.objects.distinct().values_list('categories_name', flat= True)
+    image = Image.objects.filter(location_name= location)
+    return render(request, 'category.html', {"image":image, "locations":locations, 'categories':categories})
     
