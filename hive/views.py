@@ -9,13 +9,13 @@ from django.core.exceptions import ObjectDoesNotExist
 def photos(request):
     """Function for Images views functionality"""
 
-    categories = Image.objects.distinct().values_list('category_name', flat=True)
-    locations = Image.objects.distinct().values_list('location_name', flat=True)
+    categories = Image.objects.distinct().values_list('category__name', flat=True)
+    locations = Image.objects.distinct().values_list('location__name', flat=True)
     try:
         images = Image.objects.all()
     except ObjectDoesNotExist:
         raise Http404
-    return render(request, photos.html, {'image':images, 'categories':categories, 'locations':locations})
+    return render(request, 'photos.html', {'image':images, 'categories':categories, 'locations':locations})
 
 def search_images(request):
     """Function for Image searching/sourcing"""
@@ -33,15 +33,15 @@ def search_images(request):
 def  view_category(request, category):
     """Function for filtering Images according to their categories"""
 
-    categories = Image.objects.distinct().values_list('category_name', flat=True)
-    image = Image.objects.filter(category_name = category)
+    categories = Image.objects.distinct().values_list('category__name', flat=True)
+    image = Image.objects.filter(category__name = category)
     return render(request, 'category.html', {"image":image, 'categories': categories})
 
 def view_location(request, location):
     """Function for filtering Images according to their Locations"""
 
-    locations = Image.objects.distinct().values_list('locations_name', flat= True)
-    categories = Image.objects.distinct().values_list('categories_name', flat= True)
-    image = Image.objects.filter(location_name= location)
+    locations = Image.objects.distinct().values_list('locations__name', flat= True)
+    categories = Image.objects.distinct().values_list('categories__name', flat= True)
+    image = Image.objects.filter(location__name= location)
     return render(request, 'category.html', {"image":image, "locations":locations, 'categories':categories})
     
