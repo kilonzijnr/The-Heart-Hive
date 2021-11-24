@@ -1,6 +1,5 @@
-from functools import _Descriptor
+
 from django.db import models
-from django.db.models.base import Model
 from django.db.models.fields.files import ImageField
 
 # Create your models here.
@@ -49,3 +48,23 @@ class Image(models.Model):
         return images
 
 
+class Location(models.Model):
+    """A Model class for image location"""
+
+    name = models.CharField(max_length= 50)
+
+    def __str__(self):
+        return self.name
+
+    def save_location(self):
+        """Method for saving image location"""
+        self.save()
+
+    def delete_location(self):
+        """Method for deleting image location"""
+        self.delete()
+
+
+
+
+    
