@@ -18,6 +18,8 @@ def photos(request):
     return render(request, photos.html, {'image':images, 'categories':categories, 'locations':locations})
 
 def search_images(request):
+    """Function for Image searching/sourcing"""
+
     if 'image' in request.GET and request.GET['image']:
         search_term = request.GET.get('image')
         searched_images =Image.search_by_name(search_term)
@@ -28,4 +30,10 @@ def search_images(request):
         message = "Kindly Feed in a valid Input!"
         return render(request, 'search.html', {'message':message})
 
+def  view_category(request, category):
+    """Function for filtering Images according to their categories"""
+
+    categories = Image.objects.distinct().values_list('category_name', flat=True)
+    image = Image.objects.filter(category_name = category)
+    return render(request, 'category.html', {"image":image, 'categories': categories})
     
