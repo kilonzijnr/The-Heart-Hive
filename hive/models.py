@@ -10,7 +10,7 @@ class Image(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     location= models.ForeignKey(Location, on_delete=models.CASCADE, default=None)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(C)
 
     def __str__(self):
         return self.name
@@ -64,6 +64,25 @@ class Location(models.Model):
         """Method for deleting image location"""
         self.delete()
 
+
+class Category(models.Model):
+    """A model class for image category"""
+    
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    def save_category(self):
+        """Method to save image catgory"""
+        self.save()
+
+    def delete_category(self):
+        """Method to delete image category"""
+        self.delete()
+
+
+    
 
 
 
