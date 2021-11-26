@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {%block content%} {{block.super}}
+<br>
+
+<!-- Looping through images   -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for image in image %}
+    <!--Display Images  -->
+    
+    <div class="col" >
+       
+        <div class="card text-white bg-dark" style="max-width: 590px; " ; data-bs-toggle="modal"
+            data-bs-target="#modal1{{image.id}}">
+            <img src="{{image.image.url}}" class="img-responsive img-fluid" alt="Image" />
+            <div class="card-body">
+                <h5>{{image.name}}</h5>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2{{image.id}}">COPY
+                    IMAGE</button>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="modal1{{image.id}}" role="dialog" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="{{image.id}}Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{image.id}}Label">{{image.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-body">
+                        <p>{{image.description}}</p>
+                        <img src="{{image.image.url}}" class="img-fluid" alt="" />
+                        <p style="text-align: right">{{image.post_time | timesince}} ago</p>
+                    </div>
+                    <div class="modal-footer d-flex align-items-center justify-content-end">
+                        <button type="button" class="btn btn-danger" type="button" data-bs-dismiss="modal"
+                            aria-label="Close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal2{{image.id}}" role="dialog" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="{{image.id}}Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{image.id}}Label">{{image.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{image.image.url}}" class="img-fluid" alt="" />
+                    <h5 style="margin-top: 10px">Copy Url for {{image.name}}</h5>
+                    <input type="text" value="http://127.0.0.1:8000{{image.image.url}}" id="{{image.id}}" />
+                    <button class="btn btn-outline-primary" onclick="copyUrl()">
+                        Copy
+                    </button>
+                </div>
+                <div class="modal-footer d-flex align-items-center justify-content-end">
+                    <button type="button" class="btn btn-danger" type="button" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyUrl() {
+            /* Get the text field */
+            var copyText = document.getElementById("{{image.id}}");
+            console.log(copyText.value);
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText.value);
+        }
+    </script>
+
+    {% empty %}
+    <h2 class="text-center">OOOPS! WE HAVE NO IMAGES TO DISPLAY CURRENTLY</h2>
+    {% endfor %}
+</div>
+</div>
+
+{%endblock%}

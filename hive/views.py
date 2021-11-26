@@ -14,7 +14,7 @@ def photos(request):
     try:
         images = Image.objects.all()
     except ObjectDoesNotExist:
-        raise Http404
+        raise Http404()
     return render(request, 'photos.html', {'image':images, 'categories':categories, 'locations':locations})
 
 def search_images(request):

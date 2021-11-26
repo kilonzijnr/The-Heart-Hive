@@ -15,7 +15,8 @@
 
 <body>
     <div class="container-fluid" style="background: linear-gradient(to right, #b993d6, #8ca6db);">
-        {%include 'navbar.html %} {% block content %} {% endblock %} {% block scripts % }
+        {% include 'navbar.html' %} {% block content %} {% endblock %}
+        
         <script src="../../static/js/app.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
             integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
@@ -25,7 +26,7 @@
         <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
             integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
             async></script>
-        {% bootstrap_javascript %} {% endblock %}
+        {% bootstrap_javascript %} 
     </div>
 </body>
 </html>
