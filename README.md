@@ -4,14 +4,14 @@ The Hive Heart is an application that allows the user to host or post their own 
 
 The Hive Heart is a project app that has aided me to publish my pictures on the web.In the app you are able to interact with different photos posted at different times. Moreover as a user you are able to view each photo's details. The user is also able to post and remove a photo.
 
-# Prerequisites
+# PREREQUISITES
 Before you begin, ensure you have met the following requirements:
 
 You have installed the latest version of [Django(python)]
 You have a Linux machine. For only user priviledges the application is able to work properly on any operating system ].
 You have read the projects REAME.md Documentation.
 
-# Installation Requirements
+# INSTALLATION REQUIREMENTS
 - python3.8
 - pipenv
 - Git and Github

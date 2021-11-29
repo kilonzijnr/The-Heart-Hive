@@ -9,6 +9,9 @@ django-bootstrap = "*"
 django-bootstrap5 = "*"
 psycopg2 = "*"
 pillow = "*"
+django-heroku = "*"
+gunicorn = "*"
+cloudinary = "*"
 
 [dev-packages]
 

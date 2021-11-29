@@ -40,8 +40,8 @@ def  view_category(request, category):
 def view_location(request, location):
     """Function for filtering Images according to their Locations"""
 
-    locations = Image.objects.distinct().values_list('locations__name', flat= True)
-    categories = Image.objects.distinct().values_list('categories__name', flat= True)
+    locations = Image.objects.distinct().values_list('location__name', flat= True)
+    categories = Image.objects.distinct().values_list('category__name', flat= True)
     image = Image.objects.filter(location__name= location)
     return render(request, 'category.html', {"image":image, "locations":locations, 'categories':categories})
     
