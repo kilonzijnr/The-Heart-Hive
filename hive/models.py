@@ -1,6 +1,6 @@
 
 from django.db import models
-from django.db.models.fields.files import ImageField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -39,7 +39,7 @@ class Category(models.Model):
 class Image(models.Model):
     """A model class for image properties"""
     
-    image = ImageField('image')
+    image = CloudinaryField("Image")
     name = models.CharField(max_length=50)
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE, default=None)
